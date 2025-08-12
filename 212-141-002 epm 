@@ -1,0 +1,27 @@
+import math
+
+# Input section
+t = input("Enter crystal type (BCC/FCC): ").upper()
+rho = float(input("Density (kg/m^3): "))
+M = float(input("Atomic mass (kg/mol): "))
+NA = float(input("Avogadro's number: "))
+
+# Number of atoms per unit cell
+n = 2 if t == "BCC" else 4
+
+# Lattice parameter (m)
+a = ((n * M / NA) / rho) ** (1/3)
+
+# Atomic radius (m)
+if t == "BCC":
+    R = (math.sqrt(3) / 4) * a
+else:  # FCC
+    R = (math.sqrt(2) / 4) * a
+
+# Atomic concentration (atoms per mm^3)
+C = rho * NA / M / 1e6
+
+# Output
+print(f"Lattice parameter a = {a} m")
+print(f"Atomic radius R = {R} m")
+print(f"Atomic concentration = {C} atoms/mm^3")
